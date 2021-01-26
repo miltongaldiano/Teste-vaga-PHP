@@ -33,8 +33,8 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        return $this->movie->store($request);
+        return $this->movie->store();
     }
 }
