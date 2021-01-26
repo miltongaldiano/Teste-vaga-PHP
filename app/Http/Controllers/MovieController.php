@@ -28,16 +28,6 @@ class MovieController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function favoriteMovies($userId)
-    {
-        return $this->movie->listFavorite($userId);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
