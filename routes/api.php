@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,10 @@ use App\Http\Controllers\MovieController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->prefix('users')->group(function () {
+    Route::get('/movies', [UserController::class, 'movies'])->name('user.movies');
+    Route::post('/favorite-movie', [UserController::class, 'favoriteMovie'])->name('user.favoritemovie');
 });
 
 Route::resource('movies', MovieController::class)->middleware('auth:api');
+Route::resource('users', UserController::class)->middleware('auth:api');

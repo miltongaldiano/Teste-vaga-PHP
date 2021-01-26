@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
+use Illuminate\Support\Facades\Auth;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -42,8 +44,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function favoriteMovie($movieId)
+    {
+
+        return Auth::user()->movies()->syncWithoutDetaching($movieId);
+
+    }
+
     public function movies()
     {
-        return $this->belongsToMany(Movie::class);
+        return $this->belongsToMany(Movie::class)->withTimestamps();
     }
 }
