@@ -20,4 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('movies', MovieController::class);
+Route::resource('movies', MovieController::class)->middleware('auth:api');

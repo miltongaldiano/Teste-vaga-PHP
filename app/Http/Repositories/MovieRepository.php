@@ -22,7 +22,7 @@ class MovieRepository implements MovieRepositoryInterface
 
     public function list()
     {
-        return $this->movie->get();
+        return $this->movie->paginate(30);
     }
 
     public function store()
