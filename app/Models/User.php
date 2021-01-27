@@ -44,6 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function deleteFavoriteMovie($movieId)
+    {
+        if(!$movieId)
+        {
+            return false;
+        }
+
+        return Auth::user()->movies()->detach($movieId);
+
+    }
+
     public function favoriteMovie($movieId)
     {
 
@@ -53,6 +64,8 @@ class User extends Authenticatable
 
     public function movies()
     {
+
         return $this->belongsToMany(Movie::class)->withTimestamps();
+
     }
 }

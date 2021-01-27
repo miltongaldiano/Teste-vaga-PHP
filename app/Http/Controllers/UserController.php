@@ -22,6 +22,11 @@ class UserController extends Controller
         return $this->user->favoriteMovie($request);
     }
 
+    public function deleteFavoriteMovie($movieId)
+    {
+        return $this->user->deleteFavoriteMovie($movieId);
+    }
+
     public function movies()
     {
         return $this->user->movies();

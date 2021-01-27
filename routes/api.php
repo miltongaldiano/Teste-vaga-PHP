@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 Route::middleware('auth:api')->prefix('users')->group(function () {
     Route::get('/movies', [UserController::class, 'movies'])->name('user.movies');
     Route::post('/favorite-movie', [UserController::class, 'favoriteMovie'])->name('user.favoritemovie');
+    Route::delete('/favorite-movie-delete/{id}', [UserController::class, 'deleteFavoriteMovie'])->name('user.favoritemovie.delete');
 });
 
 Route::resource('movies', MovieController::class)->middleware('auth:api');
