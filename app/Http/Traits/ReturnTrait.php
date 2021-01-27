@@ -3,7 +3,7 @@ namespace App\Traits;
 
 trait ReturnTrait {
 
-    public function returnSuccess($bool, $msgTrue, $msgFalse) {
+    public function returnSuccess($bool, $msgTrue, $msgFalse = '') {
 
         $code = ($bool ? 200 : 400);
         $msg = ($bool ? $msgTrue : $msgFalse);

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -66,6 +67,17 @@ class User extends Authenticatable
     {
 
         return $this->belongsToMany(Movie::class)->withTimestamps();
+
+    }
+
+    public function store($request)
+    {
+        
+        $this->name = $request->name;
+        $this->email = $request->email;
+        $this->password = Hash::make($request->password);
+        
+        return $this->save();
 
     }
 }

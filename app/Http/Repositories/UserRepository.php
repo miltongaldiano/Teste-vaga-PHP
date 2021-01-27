@@ -71,5 +71,17 @@ class UserRepository implements UserRepositoryInterface
         return Auth::user()->movies;
     }
 
+    public function store($request)
+    {
+
+        $user = $this->user->store($request);
+
+        return $this->returnSuccess(
+            $user,
+            'Usuário criado com sucesso!'
+        );
+
+    }
+
 }
 ?>

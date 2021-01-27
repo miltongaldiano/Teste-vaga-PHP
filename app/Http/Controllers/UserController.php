@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserPostRequest;
 
 use App\Repositories\UserRepository;
 
@@ -30,5 +31,10 @@ class UserController extends Controller
     public function movies()
     {
         return $this->user->movies();
+    }
+
+    public function store(UserPostRequest $request)
+    {
+        return $this->user->store($request);
     }
 }
