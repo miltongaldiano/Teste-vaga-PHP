@@ -23,4 +23,3 @@ Route::middleware('auth:api')->prefix('users')->group(function () {
 });
 
 Route::resource('movies', MovieController::class)->middleware('auth:api');
-Route::resource('users', UserController::class)->middleware('auth:api');

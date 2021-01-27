@@ -36,7 +36,7 @@ class UserRepository implements UserRepositoryInterface
         } catch (\Throwable $th) {
 
             return response()->json([
-                'message' => 'Filmes não adicionado!',
+                'message' => 'Filme não adicionado!',
             ], 500);
 
         }
