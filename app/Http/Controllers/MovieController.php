@@ -17,11 +17,13 @@ class MovieController extends Controller
         $this->movie = $movie;
     }
 
+    //Listando os filmes
     public function index()
     {
         return $this->movie->list();
     }
-
+    
+    //Importando os filmes: command: php artisan import:movies
     public function store()
     {
         return $this->movie->store();

@@ -18,21 +18,25 @@ class UserController extends Controller
         $this->user = $user;
     }
 
+    //Cadastrando o filme favorito do usuário logado
     public function favoriteMovie(Request $request)
     {
         return $this->user->favoriteMovie($request);
     }
 
+    //Removendo o filme favorito do usuário logado
     public function deleteFavoriteMovie($movieId)
     {
         return $this->user->deleteFavoriteMovie($movieId);
     }
 
+    //Listando os filmes favoritos do usuário logado
     public function movies()
     {
         return $this->user->movies();
     }
 
+    //Cadastrando um novo usuário
     public function store(UserPostRequest $request)
     {
         return $this->user->store($request);
