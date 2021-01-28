@@ -11,8 +11,6 @@ class Movie extends Model
 
     protected $table = 'movies';
 
-    public $incrementing = false;
-
     protected $fillable = [
         'movie_db_id',
         'title',
