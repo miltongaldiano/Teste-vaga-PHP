@@ -56,9 +56,7 @@ Crie o primeiro usuário do sistema para teste executando:
 
 ## Rotas do sistema
 
-Documentação, acesse:
-
-    [Documentação](https://documenter.getpostman.com/view/2523638/TW6xmnAb)
+Documentação: acesse clicando [aqui](https://documenter.getpostman.com/view/2523638/TW6xmnAb)
 
 Para visualizar as rotas do sistema execute:
 
