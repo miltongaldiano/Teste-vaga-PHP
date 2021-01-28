@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +17,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('users')->group(function () {
+    Route::post('/store', [UserController::class, 'store'])->name('user.store');
 });
+
+
+Route::middleware('auth:api')->prefix('users')->group(function () {
+    Route::get('/movies', [UserController::class, 'movies'])->name('user.movies');
+    Route::post('/favorite-movie', [UserController::class, 'favoriteMovie'])->name('user.favoritemovie');
+    Route::delete('/favorite-movie-delete/{id}', [UserController::class, 'deleteFavoriteMovie'])->name('user.favoritemovie.delete');
+});
+
+Route::resource('movies', MovieController::class)->middleware('auth:api');

@@ -1,41 +1,67 @@
-## Objetivos
-O objetivo do teste é conhecer as habilidades em:
-- Programação PHP / Laravel
-- Organização e estruturação de um projeto
-- Análise/Entendimento de requisitos
-- Qualidade do código
-- Conhecimento em banco de dados
-- Conhecimento de APIS restful
-- Lógica
+## Iniciando o Projeto
 
-## Importante
-Nenhum código desenvolvido nesse teste será utilizado de forma comercial. O objetivo aqui é apenas avaliar o conhecimento do candidato.
+Para iniciar o projeto clone com o [GIT](https://git-scm.com/), executando:
 
-## O teste
-Que tal desenvolvermos uma API de filmes favoritos para que as pessoas consigam fazer uma lista dos filmes que elas mais gostam?
+    git clone git@github.com:miltongaldiano/Teste-vaga-PHP.git {nome_pasta}
 
-### Então você vai precisar:
-- Criar a estrutura de banco de dados
-- Popular a tabela de filmes (recomendados consumir a API do The Movie DB)
-- Criar sistema de autenticação para que o usuário se cadastre e consiga efetuar login
-- Criar os endpoints para:
-  - Cadastras usuário
-  - Efetuar login para poder consumir o restante da API
-  - Listar os filmes cadastrados no banco
-  - Listar os filmes que o usuário salvou como favorito
-  - Salvar um filme como favorito
-  - Remover um filme da lista de favoritos do usuário
-  
-Não esqueça das validações!
+## Configurações
 
-### O que devo utilizar?
-- Laravel 
+Entre na raiz do projeto.
 
-### Plus
-- Testes automatizados
+Para baixar as dependências execute o [Composer](https://getcomposer.org/):
 
-### Como participar ?
-- Fazer um fork deste repositório e enviar um pull request ao finalizar. Não esqueça de colocar as instruções para rodar o projeto.
+    composer install
 
+Copie o arquivo .env.example renomeando para .env e inclua os dados de conexão no arquivo:
 
-# Boa sorte!
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=laravel
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+Inclua também (.env) os dados para acesso a API de filmes do DBMovie:
+
+    MVDB_URL=https://api.themoviedb.org/3
+    MVDB="Chave da API (v3 auth)"
+
+Execute o comando para gerar a chave:
+
+    php artisan key:generate
+    
+Após execute as migrações para geração de tabelas e novos campos:
+
+    php artisan migrate
+
+Crie o primeiro usuário do sistema para teste executando:
+
+    php artisan db:seed --class=UserSeeder
+
+## Passport
+
+  Para criar os dados de acesso ao token, execute:
+
+    php artisan passport:install
+
+## Comando para importar os filmes
+
+  Execute o comando ou inclua a chamada no crontab:
+
+    php artisan import:movies
+
+  crontab: * * * * * php [caminho do projeto]/artisan schedule:run >> /dev/null 2>&1
+
+  Obs.: Será executado todo dia à meia noite para atualizar a listagem de filmes
+
+## Rotas do sistema
+
+Documentação: acesse clicando [aqui](https://documenter.getpostman.com/view/2523638/TW6xmnAb)
+
+Para visualizar as rotas do sistema execute:
+
+    php artisan route:list
+
+## Linux
+
+Talvez será necessário dar permissão de acesso as pastas storage, public e bootstrap

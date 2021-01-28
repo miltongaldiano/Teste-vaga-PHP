@@ -6,10 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -40,4 +44,40 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function deleteFavoriteMovie($movieId)
+    {
+        if(!$movieId)
+        {
+            return false;
+        }
+
+        return Auth::user()->movies()->detach($movieId);
+
+    }
+
+    public function favoriteMovie($movieId)
+    {
+
+        return Auth::user()->movies()->syncWithoutDetaching($movieId);
+
+    }
+
+    public function movies()
+    {
+
+        return $this->belongsToMany(Movie::class)->withTimestamps();
+
+    }
+
+    public function store($request)
+    {
+        
+        $this->name = $request->name;
+        $this->email = $request->email;
+        $this->password = Hash::make($request->password);
+        
+        return $this->save();
+
+    }
 }
