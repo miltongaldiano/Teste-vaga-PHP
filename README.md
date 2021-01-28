@@ -21,6 +21,11 @@ Copie o arquivo .env.example renomeando para .env e inclua os dados de conexão 
     DB_USERNAME=root
     DB_PASSWORD=
 
+Inclua também (.env) os dados para acesso a API de filmes do DBMovie:
+
+    MVDB_URL=https://api.themoviedb.org/3
+    MVDB="Chave da API (v3 auth)"
+
 Execute o comando para gerar a chave:
 
     php artisan key:generate
