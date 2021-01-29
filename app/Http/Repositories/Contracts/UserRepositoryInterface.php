@@ -1,13 +1,17 @@
 <?php
 namespace App\Repositories\Contracts;
 
+use Illuminate\Http\Request;
+
 interface UserRepositoryInterface
 {
-    public function deleteFavoriteMovie($request);
+    public function deleteFavoriteMovie(int $movieId);
 
-    public function favoriteMovie($request);
+    public function favoriteMovie(Request $request);
 
     public function movies();
+
+    public function store(Request $request);
 
 }
 

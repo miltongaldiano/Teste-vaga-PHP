@@ -5,6 +5,8 @@ use App\Models\User;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Traits\ReturnTrait;
 
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository implements UserRepositoryInterface
@@ -19,7 +21,7 @@ class UserRepository implements UserRepositoryInterface
         $this->user = $user;
     }
 
-    public function deleteFavoriteMovie($movieId)
+    public function deleteFavoriteMovie(int $movieId)
     {
         try {
             
@@ -42,7 +44,7 @@ class UserRepository implements UserRepositoryInterface
         
     }
 
-    public function favoriteMovie($request)
+    public function favoriteMovie(Request $request)
     {
         try {
 
@@ -71,7 +73,7 @@ class UserRepository implements UserRepositoryInterface
         return Auth::user()->movies;
     }
 
-    public function store($request)
+    public function store(Request $request)
     {
 
         $user = $this->user->store($request);
