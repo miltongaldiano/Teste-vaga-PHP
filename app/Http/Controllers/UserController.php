@@ -6,14 +6,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserPostRequest;
 
-use App\Repositories\UserRepository;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserController extends Controller
 {
 
     protected $user;
 
-    public function __construct(UserRepository $user)
+    public function __construct(UserRepositoryInterface $user)
     {
         $this->user = $user;
     }

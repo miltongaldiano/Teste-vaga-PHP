@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
-use App\Repositories\MovieRepository;
+use App\Repositories\Contracts\MovieRepositoryInterface;
 
 class MovieController extends Controller
 {
 
     protected $movie;
 
-    public function __construct(MovieRepository $movie)
+    public function __construct(MovieRepositoryInterface $movie)
     {
         $this->movie = $movie;
     }
